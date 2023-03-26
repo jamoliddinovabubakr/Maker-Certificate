@@ -12,6 +12,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .decorators import unauthenticated_user
 from .models import Certificate, Course, CourseComplete, Nation
 from .forms import CreateCertificateForm, CreateCourseForm, CreateNationForm, CourseCompleteForm
+from .pain_pdf import paint_pdf
 from .qr_code import qr_code_function
 from .read_data import read_data_excell
 from django.core.files.storage import FileSystemStorage
@@ -402,6 +403,7 @@ def fill_form(request):
                 code = qr_code_function(ob)
                 ob.qr_code = "qr_codes/" + code + ".png"
                 ob.pdf_certificate = generate_obj_pdf(ob.id, code)
+                paint_pdf(ob, code)
                 ob.save()
 
             return redirect('certificates')
