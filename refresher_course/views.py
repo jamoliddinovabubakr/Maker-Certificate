@@ -12,6 +12,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .decorators import unauthenticated_user
 from .models import Certificate, Course, CourseComplete, Nation
 from .forms import CreateCertificateForm, CreateCourseForm, CreateNationForm, CourseCompleteForm
+from .qr_code import qr_code_function
 from .read_data import read_data_excell
 from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
@@ -397,7 +398,10 @@ def fill_form(request):
                     registered_number=max_reg_num,
                     registered_day=current_date
                 )
-                ob.pdf_certificate = generate_obj_pdf(ob.id)
+
+                code = qr_code_function(ob)
+                ob.qr_code = "qr_codes/" + code + ".png"
+                ob.pdf_certificate = generate_obj_pdf(ob.id, code)
                 ob.save()
 
             return redirect('certificates')
@@ -651,10 +655,10 @@ class GeneratePdf(View):
         return HttpResponse(pdf, content_type='application/pdf')
 
 
-def generate_obj_pdf(instance_id):
+def generate_obj_pdf(instance_id, code):
     obj = Certificate.objects.get(id=instance_id)
     context = {'instance': obj}
     pdf_certificate = render_to_pdf('pdfs/invoice.html', context)
-    filename = f"YourPDF_Order{instance_id}.pdf"
+    filename = f"{code}.pdf"
     obj.pdf_certificate.save(filename, File(BytesIO(pdf_certificate.content)))
     return "pdfs/" + filename
