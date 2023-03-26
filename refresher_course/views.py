@@ -387,7 +387,7 @@ def fill_form(request):
                     last_name=user[1],
                     middle_name=user[2],
                     jshshr=user[3],
-                    invoice=user[4],
+                    # invoice=user[4],
                     course=course,
                     start_date=start_date,
                     end_date=end_date,
@@ -397,16 +397,7 @@ def fill_form(request):
                     registered_number=max_reg_num,
                     registered_day=current_date
                 )
-
-                qrcode_img = qrcode.make(data=data)
-                canvas = Image.new("RGB", (500, 500), "white")
-                ImageDraw.Draw(canvas)
-                canvas.paste(qrcode_img)
-                filename = f'qr_{ob.cer_nomer}.png'
-                buffer = BytesIO()
-                canvas.save(buffer, 'PNG')
-                ob.qr_code.save(filename, File(buffer))
-                canvas.close()
+                ob.pdf_certificate = generate_obj_pdf(ob.id)
                 ob.save()
 
             return redirect('certificates')
@@ -414,12 +405,12 @@ def fill_form(request):
             return HttpResponse("Form isn't valid")
     else:
         form = CourseCompleteForm()
-        ob = Certificate.objects.latest('cer_nomer')
-        if not ob:
-            end_cer_num = 0
-        else:
-            end_cer_num = ob.cer_nomer
-        return render(request, "refresher_course/import_file_form.html", {'form': form, 'end_cer_num': end_cer_num})
+        # ob = Certificate.objects.latest('cer_nomer')
+        # if not ob:
+        #     end_cer_num = 0
+        # else:
+        #     end_cer_num = ob.cer_nomer
+        return render(request, "refresher_course/import_file_form.html", {'form': form})
 
 
 @login_required(login_url='login')
@@ -640,3 +631,30 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect('login')
+
+
+from django.http import HttpResponse
+from django.views.generic import View
+
+from .utils import render_to_pdf  # created in step 4
+
+
+class GeneratePdf(View):
+    def get(self, request, *args, **kwargs):
+        data = {
+            'today': datetime.date.today(),
+            'amount': 39.99,
+            'customer_name': 'Cooper Mann',
+            'order_id': 1233434,
+        }
+        pdf = render_to_pdf('pdf/invoice.html', data)
+        return HttpResponse(pdf, content_type='application/pdf')
+
+
+def generate_obj_pdf(instance_id):
+    obj = Certificate.objects.get(id=instance_id)
+    context = {'instance': obj}
+    pdf_certificate = render_to_pdf('pdfs/invoice.html', context)
+    filename = f"YourPDF_Order{instance_id}.pdf"
+    obj.pdf_certificate.save(filename, File(BytesIO(pdf_certificate.content)))
+    return "pdfs/" + filename

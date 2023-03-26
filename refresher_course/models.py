@@ -132,6 +132,8 @@ class Certificate(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    pdf_certificate = models.FileField(upload_to="pdfs")
+
     def __str__(self):
         return f"{self.first_name} {self.last_name} {self.middle_name}"
 
