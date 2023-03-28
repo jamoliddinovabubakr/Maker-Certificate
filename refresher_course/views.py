@@ -1,26 +1,26 @@
 from datetime import datetime
 from io import BytesIO
+
 import qrcode
+import urllib3
 from PIL import Image, ImageDraw
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.core.files import File
-from django.http import JsonResponse, HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
-from .decorators import unauthenticated_user
-from .models import Certificate, Course, CourseComplete, Nation
-from .forms import CreateCertificateForm, CreateCourseForm, CreateNationForm, CourseCompleteForm
-from .pain_pdf import paint_pdf
-from .qr_code import qr_code_function
-from .read_data import read_data_excell
 from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
-from django.db.models import Q
-from django.db.models import Max
+from django.db.models import Max, Q
+from django.http import JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
+
+from print_pdf import paint_pdf
 from refresher_course.constants import *
-import urllib3
+from .decorators import unauthenticated_user
+from .forms import CreateCertificateForm, CreateCourseForm, CreateNationForm, CourseCompleteForm
+from .models import Certificate, Course, CourseComplete, Nation
+from .utils import qr_code_function, read_data_excell
 
 urllib3.disable_warnings()
 
@@ -640,21 +640,8 @@ def logout(request):
 
 
 from django.http import HttpResponse
-from django.views.generic import View
 
 from .utils import render_to_pdf  # created in step 4
-
-
-class GeneratePdf(View):
-    def get(self, request, *args, **kwargs):
-        data = {
-            'today': datetime.date.today(),
-            'amount': 39.99,
-            'customer_name': 'Cooper Mann',
-            'order_id': 1233434,
-        }
-        pdf = render_to_pdf('pdf/invoice.html', data)
-        return HttpResponse(pdf, content_type='application/pdf')
 
 
 def generate_obj_pdf(instance_id, code):
