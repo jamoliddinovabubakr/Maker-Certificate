@@ -47,6 +47,7 @@ def paint_pdf(ob, code):
 
     pdf.setFont("Arimo-Italic", 15)
     course_name = str(ob.course)
+    # max leng 68
     pdf.drawCentredString(350, 320, course_name)
     pdf.setFont("Arimo-Italic", 15)
     pdf.drawCentredString(350, 300, "kursi bo'yicha malakasini oshirdi")
