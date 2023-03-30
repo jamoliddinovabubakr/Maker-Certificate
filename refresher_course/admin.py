@@ -5,9 +5,10 @@ from import_export.admin import ImportExportActionModelAdmin
 
 @admin.register(Course)
 class CourseAdmin(ImportExportActionModelAdmin):
-    list_display = ['id', 'name', 'description', 'status', 'created_at']
+    list_display = ['id', 'name', 'language', 'status', 'created_at', "hour_course"]
     list_filter = ['name', 'status']
     search_fields = ['name']
+    list_editable = ["name", "status", "hour_course"]
 
 
 @admin.register(Page)

@@ -27,7 +27,7 @@
                         {% if person.course.id != 2 %}
                             {{ person.year }}-yil {{ person.start_date }}-{{ person.end_date }}-{{ person.month }}
 
-                           {{ person.course.description|safe }}
+                           {{ person.course.language|safe }}
                         {% endif %}
                         <br>
                         {% if person.course.id == 2 %}

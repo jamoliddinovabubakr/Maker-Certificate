@@ -146,7 +146,7 @@ class CourseCompleteForm(forms.ModelForm):
 class CreateCourseForm(forms.ModelForm):
     class Meta:
         model = Course
-        fields = ['name', 'description', 'hour_course', 'is_visible_hour', 'status']
+        fields = ['name', 'language', 'hour_course', 'is_visible_hour', 'status']
 
         widgets = {
             'name': TextInput(attrs={
@@ -155,7 +155,7 @@ class CreateCourseForm(forms.ModelForm):
             'hour_course': NumberInput(attrs={
                 'class': 'form-control',
             }),
-            'description': Textarea(attrs={
+            'language': Textarea(attrs={
                 'class': 'form-control',
             }),
         }

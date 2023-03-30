@@ -12,7 +12,7 @@ User = get_user_model()
 
 class Course(models.Model):
     name = models.CharField(_("Kurs nomi"), max_length=255, null=True)
-    description = models.TextField(_("Text"), null=True)
+    language = models.CharField(_("Text"), max_length=255, blank=True, null=True)
     status = models.BooleanField(default=False)
     hour_course = models.IntegerField(default=0)
     is_visible_hour = models.BooleanField(default=False)
