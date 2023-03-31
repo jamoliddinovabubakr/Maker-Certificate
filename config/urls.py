@@ -13,14 +13,12 @@ urlpatterns = [
 ]
 
 router = SimpleRouter()
-router.register(r'certificate', CertificateAPIView)
+router.register(r'', CertificateAPIView)
 
 urlpatterns += {
     path('', include('refresher_course.urls')),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-
-    # path('api/v1/auth/', include('djoser.urls')),  # new
     re_path(r'^auth/', include('djoser.urls.authtoken')),  # new
 }
 

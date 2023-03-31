@@ -8,7 +8,6 @@ class CourseAdmin(ImportExportActionModelAdmin):
     list_display = ['id', 'name', 'language', 'status', 'created_at', "hour_course"]
     list_filter = ['name', 'status']
     search_fields = ['name']
-    list_editable = ["name", "status", "hour_course"]
 
 
 @admin.register(Page)
@@ -25,14 +24,16 @@ class NationAdmin(ImportExportActionModelAdmin):
 
 @admin.register(Certificate)
 class CertificateAdmin(ImportExportActionModelAdmin):
-    list_display = ['id', 'first_name', 'last_name', 'middle_name', 'passport', 'nationality', 'course', 'start_date', 'end_date', 'month', 'year', 'cer_nomer',
+    list_display = ['id', 'first_name', 'last_name', 'middle_name', 'passport', 'nationality', 'course', 'start_date',
+                    'end_date', 'month', 'year', 'cer_nomer',
                     'qr_code', 'status']
     list_filter = ['month', 'course', 'status', 'nationality', 'year']
-    search_fields = ['first_name', 'last_name', 'middle_name', 'passport', 'start_date', 'end_date', 'month', 'cer_nomer']
+    search_fields = ['first_name', 'last_name', 'middle_name', 'passport', 'start_date', 'end_date', 'month',
+                     'cer_nomer']
 
 
 @admin.register(CourseComplete)
 class CourseCompleteAdmin(ImportExportActionModelAdmin):
-    list_display = ['id', 'begin_cer_nomer', 'nationality', 'course', 'start_date', 'end_date', 'month', 'year','file']
+    list_display = ['id', 'begin_cer_nomer', 'nationality', 'course', 'start_date', 'end_date', 'month', 'year', 'file']
     list_filter = ['month', 'course', 'nationality', 'course', 'year']
     search_fields = ['month', 'course']
