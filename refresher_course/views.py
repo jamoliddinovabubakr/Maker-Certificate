@@ -15,7 +15,7 @@ from django.db.models import Max, Q
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
-from print_pdf import paint_pdf
+from print_pdf import paint_pdf, paint_pdf_gn
 from refresher_course.constants import *
 from .decorators import unauthenticated_user
 from .forms import CreateCertificateForm, CreateCourseForm, CreateNationForm, CourseCompleteForm
@@ -364,6 +364,7 @@ def fill_form(request):
             month = form.cleaned_data['month']
             begin_cer_nomer = form.cleaned_data['begin_cer_nomer']
             nationality = form.cleaned_data['nationality']
+            certificate_turi = form.cleaned_data['certificate_turi']
 
             users = read_data_excell(excel_file)
 
@@ -399,13 +400,18 @@ def fill_form(request):
                     registered_number=max_reg_num,
                     registered_day=current_date
                 )
-
-                code = qr_code_function(ob)
-                ob.qr_code = "qr_codes/" + code + ".png"
-                ob.pdf_certificate = generate_obj_pdf(ob.id, code)
-                paint_pdf(ob, code)
-                ob.save()
-
+                if int(certificate_turi) == 1:
+                    code = qr_code_function(ob)
+                    ob.qr_code = "qr_codes/" + code + ".png"
+                    ob.pdf_certificate = generate_obj_pdf(ob.id, code)
+                    paint_pdf(ob, code)
+                    ob.save()
+                else:
+                    code = qr_code_function(ob)
+                    ob.qr_code = "qr_codes/" + code + ".png"
+                    ob.pdf_certificate = generate_obj_pdf(ob.id, code)
+                    paint_pdf_gn(ob, code)
+                    ob.save()
             return redirect('certificates')
         else:
             return HttpResponse("Form isn't valid")

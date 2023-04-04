@@ -75,6 +75,11 @@ class CourseComplete(models.Model):
     nationality = models.ForeignKey(Nation, on_delete=models.CASCADE, null=True, blank=True)
     file = models.FileField(_("Fayl"), upload_to=user_directory_path)
     year = models.CharField(_("Yil"), max_length=4, default="2023", choices=Years)
+    CERTIFICATE_CHOICES = (
+        ("1", "Ilmiy o'quv markazi"),
+        ("2", "Guruh nazoratchilari"),
+    )
+    certificate_turi = models.CharField(_("Certificate turi"), max_length=1, default=1, choices=CERTIFICATE_CHOICES)
 
     def save(self, *args, **kwargs):
         if not self.nationality:

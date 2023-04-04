@@ -23,11 +23,10 @@ class CertificateAPIView(mixins.ListModelMixin, GenericViewSet):
     filterset_fields = ['jshshr', 'course']
     permission_classes = [IsAdminUser]
 
-
 # class CertificateAPIView(mixins.ListModelMixin, mixins.RetrieveModelMixin, GenericViewSet):
 #     queryset = Certificate.objects.all()
 #     serializer_class = CertificateSerializer
-#     filter_backends = [DjangoFilterBackend]
+#     filter_backends = [DjangoFilterBackend]c
 #     filterset_fields = ['jshshr', 'course']
 #     permission_classes = [IsAdminUser]
 #
@@ -35,4 +34,3 @@ class CertificateAPIView(mixins.ListModelMixin, GenericViewSet):
 #         if 'pk' in kwargs:
 #             return self.retrieve(request, *args, **kwargs)
 #         return super().list(request, *args, **kwargs)
-

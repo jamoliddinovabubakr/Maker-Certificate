@@ -90,7 +90,8 @@ class CreateCertificateForm(forms.ModelForm):
 class CourseCompleteForm(forms.ModelForm):
     class Meta:
         model = CourseComplete
-        fields = ['course', 'start_date', 'end_date', 'month', 'year', 'file', 'begin_cer_nomer', 'nationality']
+        fields = ['course', 'start_date', 'end_date', 'month', 'year', 'file', 'begin_cer_nomer', 'nationality',
+                  'certificate_turi']
 
         widgets = {
             'course': Select(attrs={
@@ -134,6 +135,13 @@ class CourseCompleteForm(forms.ModelForm):
                 'data - parsley - required': "true",
             }),
             'year': Select(attrs={
+                'class': 'form-control selectpicker',
+                'data - size': "10",
+                'data-live-search': "true",
+                'data - style': "btn-white",
+                'data - parsley - required': "true",
+            }),
+            'certificate_turi': Select(attrs={
                 'class': 'form-control selectpicker',
                 'data - size': "10",
                 'data-live-search': "true",
