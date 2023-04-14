@@ -63,9 +63,9 @@ def qr_code_function(ob):
     # Print the hash
     # Importing library
     # Data to be encoded
-    data = f'https:www.ilmiymarkaz.com/{hex_digest}/'
+    data = f'https:www.ejournal.uzbmb.uz/malaka/media/pdfs/{hex_digest}/'
     # Encoding data using make() function
     img = qrcode.make(data)
     # Saving as an image file
-    img.save(f'media/qr_codes/{hex_digest}.png')
+    img.save(f'malaka/media/qr_codes/{hex_digest}.png')
     return hex_digest

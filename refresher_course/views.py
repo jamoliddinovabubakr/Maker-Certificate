@@ -50,26 +50,6 @@ def mydtm(request):
 
     Course = []
 
-    # for page in range(1, get_page(url=f"{URL}service_id=1", headers=HEADERS) + 1, 1):
-    #     response = get_all_data(f"{URL}service_id=1&page={page}", HEADERS)
-    #     for data in response:
-    #         Users_1.append(data)
-    #
-    # test_day = "2023-02-15"
-    # course_name = "Ona tili va adabiyot fani ( O‘zbek tili) Milliy sertifikat uchun test topshiriqlarini shakllantirish malaka oshirish kursi (36 soat)"
-    #
-    # Course.append(get_data(test_day, Users_1, course_name, 1))
-    #
-    # for page in range(1, get_page(url=f"{URL}service_id=2", headers=HEADERS) + 1, 1):
-    #     response = get_all_data(f"{URL}service_id=2&page={page}", HEADERS)
-    #     for data in response:
-    #         Users_2.append(data)
-    #
-    # test_day = "2023-02-15"
-    # course_name = "Ona tili va adabiyot fani ( O‘zbek tili) Milliy sertifikat uchun test topshiriqlarini shakllantirish malaka oshirish kursi (36 soat)"
-    #
-    # Course.append(get_data(test_day, Users_2, course_name, 2))
-
     for page in range(1, get_page(url=f"{URL}service_id=4", headers=HEADERS) + 1, 1):
         response = get_all_data(f"{URL}service_id=4&page={page}", HEADERS)
         for data in response:
@@ -79,46 +59,6 @@ def mydtm(request):
     course_name = "Chet tilini bilish darajasining “yozish” va “gapirish” koʼnikmalarini baholash boʼyicha malaka oshirish kursi (24 soat)"
 
     Course.append(get_data(test_day, Users_4, course_name, 4))
-
-    # for page in range(1, get_page(url=f"{URL}service_id=5", headers=HEADERS) + 1, 1):
-    #     response = get_all_data(f"{URL}service_id=5&page={page}", HEADERS)
-    #     for data in response:
-    #         Users_5.append(data)
-    #
-    # test_day = "2023-02-15"
-    # course_name = "Ona tili va adabiyot fani ( O‘zbek tili) Milliy sertifikat uchun test topshiriqlarini shakllantirish malaka oshirish kursi (36 soat)"
-    #
-    # Course.append(get_data(test_day, Users_2, course_name, 2))
-
-    # for page in range(1, get_page(url=f"{URL}service_id=7", headers=HEADERS) + 1, 1):
-    #     response = get_all_data(f"{URL}service_id=7&page={page}", HEADERS)
-    #     for data in response:
-    #         Users_7.append(data)
-    #
-    # test_day = "2023-02-15"
-    # course_name = "Ona tili va adabiyot fani ( O‘zbek tili) Milliy sertifikat uchun test topshiriqlarini shakllantirish malaka oshirish kursi (36 soat)"
-    #
-    # Course.append(get_data(test_day, Users_2, course_name, 2))
-    #
-    # for page in range(1, get_page(url=f"{URL}service_id=8", headers=HEADERS) + 1, 1):
-    #     response = get_all_data(f"{URL}service_id=8&page={page}", HEADERS)
-    #     for data in response:
-    #         Users_8.append(data)
-    #
-    # test_day = "2023-02-15"
-    # course_name = "Ona tili va adabiyot fani ( O‘zbek tili) Milliy sertifikat uchun test topshiriqlarini shakllantirish malaka oshirish kursi (36 soat)"
-    #
-    # Course.append(get_data(test_day, Users_2, course_name, 2))
-    #
-    # for page in range(1, get_page(url=f"{URL}service_id=9", headers=HEADERS) + 1, 1):
-    #     response = get_all_data(f"{URL}service_id=9&page={page}", HEADERS)
-    #     for data in response:
-    #         Users_9.append(data)
-    #
-    # test_day = "2023-02-15"
-    # course_name = "Ona tili va adabiyot fani ( O‘zbek tili) Milliy sertifikat uchun test topshiriqlarini shakllantirish malaka oshirish kursi (36 soat)"
-    #
-    # Course.append(get_data(test_day, Users_2, course_name, 2))
 
     for page in range(1, get_page(url=f"{URL}service_id=10", headers=HEADERS) + 1, 1):
         response = get_all_data(f"{URL}service_id=10&page={page}", HEADERS)
@@ -159,46 +99,6 @@ def mydtm(request):
     course_name = "TOEIC® Speaking and Writing Test"
 
     Course.append(get_data(test_day, Users_13, course_name, 13))
-
-    # for page in range(1, get_page(url=f"{URL}service_id=18", headers=HEADERS) + 1, 1):
-    #     response = get_all_data(f"{URL}service_id=18&page={page}", HEADERS)
-    #     for data in response:
-    #         Users_18.append(data)
-    #
-    # test_day = "2023-02-15"
-    # course_name = "Ona tili va adabiyot fani ( O‘zbek tili) Milliy sertifikat uchun test topshiriqlarini shakllantirish malaka oshirish kursi (36 soat)"
-    #
-    # Course.append(get_data(test_day, Users_2, course_name, 2))
-
-    # for page in range(1, get_page(url=f"{URL}service_id=20", headers=HEADERS) + 1, 1):
-    #     response = get_all_data(f"{URL}service_id=20&page={page}", HEADERS)
-    #     for data in response:
-    #         Users_20.append(data)
-    #
-    # test_day = "2023-02-15"
-    # course_name = "Ona tili va adabiyot fani ( O‘zbek tili) Milliy sertifikat uchun test topshiriqlarini shakllantirish malaka oshirish kursi (36 soat)"
-    #
-    # Course.append(get_data(test_day, Users_2, course_name, 2))
-    #
-    # for page in range(1, get_page(url=f"{URL}service_id=21", headers=HEADERS) + 1, 1):
-    #     response = get_all_data(f"{URL}service_id=21&page={page}", HEADERS)
-    #     for data in response:
-    #         Users_21.append(data)
-    #
-    # test_day = "2023-02-15"
-    # course_name = "Ona tili va adabiyot fani ( O‘zbek tili) Milliy sertifikat uchun test topshiriqlarini shakllantirish malaka oshirish kursi (36 soat)"
-    #
-    # Course.append(get_data(test_day, Users_2, course_name, 2))
-
-    # for page in range(1, get_page(url=f"{URL}service_id=28", headers=HEADERS) + 1, 1):
-    #     response = get_all_data(f"{URL}service_id=28&page={page}", HEADERS)
-    #     for data in response:
-    #         Users_28.append(data)
-    #
-    # test_day = "2023-02-27"
-    # course_name = "Ona (O‘zbek, Rus va Qoraqalpoq) tilidan yozish ko‘nikmasini baholash bo‘yicha malaka oshirish kursi"
-
-    # Course.append(get_data(test_day, Users_28, course_name, 28))
 
     for page in range(1, get_page(url=f"{URL}service_id=28", headers=HEADERS) + 1, 1):
         response = get_all_data(f"{URL}service_id=28&page={page}", HEADERS)
@@ -454,20 +354,6 @@ def searching(request):
             "persons": persons,
         }
         return render(request, "refresher_course/print_certificate.html", context=context)
-
-    # fam = request.GET.get('fam')
-    # ism = request.GET.get('ism')
-    # sharf = request.GET.get('sharf')
-    # course_id = request.GET.get('course')
-    #
-    # if fam is not None and ism is not None and sharf is not None and course_id is not None and course_id.isnumeric():
-    #     ob = CourseComplete.objects.get(id=int(course_id))
-    #     persons = Certificate.objects.filter(first_name__icontains=fam, last_name__icontains=ism,
-    #                                          middle_name__icontains=sharf, course=ob.course)
-    # else:
-    #     persons = None
-    #
-    # finish_courses = CourseComplete.objects.all()
 
     context = {
         # 'courses': finish_courses,
