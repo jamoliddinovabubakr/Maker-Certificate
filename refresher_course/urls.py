@@ -32,4 +32,6 @@ urlpatterns = [
     path("complete_course/<int:page>", complete_course, name="terms-by-page"),
     path("statistics/", statistics, name="statistics"),
     path("mydtm/", mydtm, name="mydtm"),
+
+    path('pdfs/<pdf_filename>/', view_pdf, name='view_pdf'),
 ]

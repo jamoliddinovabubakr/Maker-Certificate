@@ -302,6 +302,7 @@ def fill_form(request):
                 )
                 if int(certificate_turi) == 1:
                     code = qr_code_function(ob)
+                    ob.hash = code
                     ob.qr_code = "qr_codes/" + code + ".png"
                     ob.pdf_certificate = generate_obj_pdf(ob.id, code)
                     paint_pdf(ob, code)
@@ -526,13 +527,14 @@ def login(request):
     return render(request, "refresher_course/register/login.html")
 
 
+
+
 def logout(request):
     auth_logout(request)
     return redirect('login')
 
 
 from django.http import HttpResponse
-
 from .utils import render_to_pdf  # created in step 4
 
 
@@ -543,3 +545,27 @@ def generate_obj_pdf(instance_id, code):
     filename = f"{code}.pdf"
     obj.pdf_certificate.save(filename, File(BytesIO(pdf_certificate.content)))
     return "pdfs/" + filename
+
+
+from django.conf import settings
+import os
+from rest_framework.response import Response
+from rest_framework import status
+
+
+from django.http import FileResponse
+from django.conf import settings
+import os
+from django.http import HttpResponseNotFound
+
+def view_pdf(request, pdf_filename):
+    print(pdf_filename)
+    pdf_full_path = os.path.join(settings.MEDIA_ROOT, 'pdfs', pdf_filename)
+    print(pdf_full_path)
+    if not os.path.exists(pdf_full_path):
+
+        pdf_full_path = pdf_full_path + '.pdf'
+    if os.path.exists(pdf_full_path):
+        return FileResponse(open(pdf_full_path, 'rb'), content_type='application/pdf')
+    else:
+        return HttpResponseNotFound("<h1>Ruxsatnoma topilmadi</h1>")
